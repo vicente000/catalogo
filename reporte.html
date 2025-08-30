@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reporte PDF</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Menú superior -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">📦 Catálogo Electrónica Vintage</a>
+    </div>
+  </nav>
+
+  <main class="container mt-4">
+    <div class="row g-3">
+      <div class="col-md-5">
+        <label for="lote-select" class="form-label">Seleccionar Lote:</label>
+        <select id="lote-select" class="form-select">
+          <option value="">-- Todos los lotes --</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <label for="categoria-select" class="form-label">Seleccionar Categoría:</label>
+        <select id="categoria-select" class="form-select" size="4" multiple disabled>
+          <option value="">-- Todas las categorías --</option>
+        </select>
+        <small class="form-text text-muted">Ctrl+clic o Cmd+clic para seleccionar varias.</small>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button id="generate-report" class="btn btn-success w-100">📄 Generar PDF</button>
+      </div>
+    </div>
+
+    <div id="report-content" class="report-content"></div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+  <script src="js/reporte.js"></script>
+</body>
+
+</html>

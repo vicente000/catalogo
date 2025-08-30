@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Información y Contacto - Catálogo Vintage</title>
+  <link rel="stylesheet" href="css/bootstrap.5.3.6.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Menú superior 
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">📦 Catálogo Electrónica Vintage</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>-->
+
+
+  <!-- Menú superior -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">📦 Catálogo Electrónica Vintage</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-3">
+            <a class="nav-link text-white fw-bold" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link text-white fw-bold" href="informacion-contacto.html">Información y
+              contacto</a>
+          </li>
+        </ul>
+        <!-- Buscador -->
+        <form class="d-flex ms-3 position-relative" role="search">
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+          <ul id="search-suggestions" class="list-group position-absolute w-100 z-3 mt-2"
+            style="top: 100%; max-height: 300px; overflow-y: auto;"></ul>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mt-5 pt-4" id="top">
+    <ol class="breadcrumb container">
+      <li class="breadcrumb-item"><a href="index.html"><span aria-current="page">Inicio</span></a></li>
+      <li class="breadcrumb-item active"> <span class="active-label" aria-current="page">Información y Contacto</span></li>
+    </ol>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="container py-4">
+    <div class="row">
+
+      <!-- Columna izquierda: información -->
+      <div class="col-md-6 mb-4">
+        <div class="info-box shadow-sm">
+          <h3>ℹ️ Sobre este catálogo</h3>
+          <p>
+            Este catálogo web reúne componentes electrónicos <strong>vintage</strong> procedentes de mi antiguo negocio en la época de los 80' que tengo a la venta
+            en
+            plataformas de confianza como eBay, Wallapop o Milanuncios.
+          </p>
+          <p>
+            Este sitio web no es una tienda en línea, sino una herramienta de consulta para que los interesados
+            puedan
+            explorar
+            cómodamente los detalles de los lotes, categorías y productos antes de comprar.
+          </p>
+          <p>Todas las fotografías del catálogo están tomadas del producto real a la venta.</p>
+          <p>
+            Si tienes dudas, sugerencias o deseas más información, no dudes en escribirme a través del
+            formulario de
+            contacto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Columna derecha: formulario de contacto -->
+      <div class="col-md-6 mb-4">
+        <div class="p-3 border rounded shadow-sm">
+          <h3>📬 Contacto</h3>
+          <form id="contact-form" action="https://formspree.io/f/xeolebre" method="POST">
+
+            <div class="mb-3">
+              <label class="form-label">Nombre</label>
+              <input type="text" class="form-control" name="nombre" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Correo</label>
+              <input type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Mensaje</label>
+              <textarea class="form-control" name="mensaje" rows="5" required></textarea>
+            </div>
+            <!-- Añadir reCAPTCHA en Formspree: https://help.formspree.io/hc/en-us/articles/360022811154-Adding-a-custom-reCAPTCHA-v2-key-->
+            <div class="d-flex justify-content-center mb-3">
+              <div class="g-recaptcha mb-3" data-sitekey="6LelCrgrAAAAAAWaYvC8aSiQqeCvrYF17zLG9Hkg"
+                data-callback="enableSubmit"></div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn btn-dark w-100">Enviar</button>
+
+            <!-- Mensaje de respuesta -->
+            <p id="my-form-status"></p>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.5.3.6.bundle.min.js"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="js/sweetalert2.all.min.js"></script>
+
+
+  <!-- Mensaje de respuesta mas info en https://help.formspree.io/hc/en-us/articles/360013470814-Submit-forms-with-JavaScript-AJAX -->
+ <script>
+  var form = document.getElementById("contact-form");
+  var submitBtn = form.querySelector('button[type="submit"]');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var data = new FormData(event.target);
+
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Gracias!',
+          text: 'Tu mensaje ha sido enviado correctamente.',
+          confirmButtonColor: '#198754'
+        });
+        form.reset();
+
+        // 🔒 Deshabilitar el botón de envío tras el éxito
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Enviado ✔"; // opcional, cambia el texto del botón
+
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error en el formulario',
+              text: data["errors"].map(error => error["message"]).join(", "),
+              confirmButtonColor: '#dc3545'
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Ha ocurrido un problema al enviar tu mensaje.',
+              confirmButtonColor: '#dc3545'
+            });
+          }
+        })
+      }
+    }).catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de conexión',
+        text: 'No se pudo enviar el mensaje. Intenta nuevamente más tarde.',
+        confirmButtonColor: '#dc3545'
+      });
+    });
+  }
+
+  form.addEventListener("submit", handleSubmit);
+</script>
+
+  <script>
+    // por defecto el boton de envio está deshabilitado
+    document.getElementById("submit-btn").disabled = true;
+
+    // callback de reCAPTCHA, solo habilita el botón submit si se completa el test
+    function enableSubmit() {
+      document.getElementById("submit-btn").disabled = false;
+    }
+  </script>
+
+</body>
+
+</html>

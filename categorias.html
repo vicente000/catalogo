@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categorías del Lote</title>
+  <link rel="stylesheet" href="css/bootstrap.5.3.6.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Menú superior -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">📦 Catálogo Electrónica Vintage</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item me-3">
+            <a class="nav-link text-white fw-bold" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link text-white fw-bold" href="informacion-contacto.html">Información y
+              contacto</a>
+          </li>
+        </ul>
+
+        <!-- Buscador -->
+        <form class="d-flex ms-3 position-relative" role="search">
+          <input id="search-input" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+          <ul id="search-suggestions" class="list-group position-absolute w-100 z-3 mt-2"
+            style="top: 100%; max-height: 300px; overflow-y: auto;"></ul>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb de navegación -->
+  <nav aria-label="breadcrumb" class="mt-5 pt-4" id="top">
+    <ol class="breadcrumb container" id="breadcrumb-nav">
+      <!-- Se rellenará dinámicamente -->
+    </ol>
+  </nav>
+
+  <!-- Contenidos -->
+  <div class="container py-4 mt-5">
+    <h2 id="titulo-lote" class="mb-4"></h2>
+
+    <!-- Spinner -->
+    <div id="loading-spinner" class="text-center my-4" style="display: none;">
+      <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-2">Buscando...</p>
+    </div>
+
+    <!-- Contenido dinámico -->
+    <div id="categorias-container" class="row g-4"></div>
+
+  </div>
+
+  <!-- Generación dinámica de cards -->
+  <script src="js/card-generator-categorias.js"></script>
+
+  <!-- Común -->
+  <script src="js/comun.js"></script>
+
+  <!-- Go top:  -->
+  <a href="#top" class="go-top"> Top </a>
+
+  <script src="js/bootstrap.5.3.6.bundle.min.js"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/buscador.js"></script>
+</body>
+
+</html>
