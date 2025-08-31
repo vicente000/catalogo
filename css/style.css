@@ -10,6 +10,8 @@
   padding-right: 0.75rem;
   text-decoration: underline;
   font-weight: 700;
+  /* Separacion */
+  margin: 5px 10px; 
 }
 
 /* Sugestiones de búsqueda*/
